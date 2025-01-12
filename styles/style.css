@@ -1,1 +1,253 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #f9fcff, #f5f8fb); /* Light blue to white gradient */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottom-image {
+  background-image: url(../res/img/homebg.png); /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers its container */
+  background-position: center top;
+  height: 370px; /* Adjust the height as needed */
+}
+
+.ticker-wrapper span {
+  color: #4A90E2; /* Blue text for labels */
+  font-family: Arial, sans-serif;
+  .up {
+    margin-left: 4px;
+    color: green; /* Green for upward movement */
+  }
+  .down {
+    margin-left: 4px;
+    color: red; /* Red for downward movement */
+  }
+  
+}
+
+/* Stock Ticker */
+.ticker-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #E1EFFF; /* White background */
+  color: black; /* Black text */
+  overflow: hidden;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
+}
+
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 50%;
+  animation: ticker 27s linear infinite;
+}
+
+.ticker span {
+  display: inline-block;
+  margin-right: 30px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@keyframes ticker {
+  from {
+      transform: translateX(0);
+  }
+  to {
+      transform: translateX(-100%);
+  }
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  background-color: #ffffff; /* White background */
+  color: black; /* Black text */
+  width: 100%;
+  position: fixed;
+  top: 30px; /* Below ticker */
+  z-index: 999;
+}
+
+.navbar h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: black;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  height: 55px;
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar .menu a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar .menu a:hover {
+  color: #0d6efd; /* Blue text on hover */
+}
+
+.navbar .extras {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar .extras .highlight {
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navbar .extras .account {
+  text-decoration: none;
+  color: #0d6efd;
+  background-color: #E1EFFF; /* Black button with white text */
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .extras .account:hover {
+  background-color: #f8f9fa;
+  color: black;
+  border: 1px solid black;
+}
+
+/* Enhanced Search Bar */
+.container {
+  margin-top: 70px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  margin-bottom: 0px;
+  padding: 100px 20px 50px; /* Adjust padding to account for navbar and ticker */
+}
+
+.title {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #0d6efd; /* Blue color for subtitle */
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.search-bar {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-left: 50px; /* Shift the search bar to the right */
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 21px 80px;
+  font-size: 18px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  outline: none;
+  background: linear-gradient(120deg, #f8f9fa, #ffffff);
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
+  background-clip: padding-box;
+  text-align: left; /* Align text to the left */
+}
+
+.search-bar input:focus {
+  border: 1px solid #0d6efd;
+  background: linear-gradient(120deg, #e0f7fa, #ffffff);
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.5);
+  transform: scale(1.02);
+}
+
+.search-bar input::placeholder {
+  color: #aaa;
+  font-style: italic;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+}
+
+.search-bar input:focus::placeholder {
+  color: transparent; /* Hide placeholder on focus */
+}
+
+.search-bar .icon{
+  color: #007BFF; /* Blue color for the icon */
+  font-size: 20px; /* Icon size */
+}
+
+.search-bar input:focus ~ .icon {
+  color: #0d6efd;
+}
+
+/* Trending Tags */
+.trending {
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+.trending span {
+  display: inline-block;
+  background: linear-gradient(120deg, #02639b, #759cff);
+  color: #ffffff;
+  padding: 8px 20px;
+  margin: 8px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trending span:hover {
+  background: linear-gradient(120deg, #0166ff, #004179);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
 
