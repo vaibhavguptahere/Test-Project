@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News - BullsEye </title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>News - BullsEye</title>
+    <link rel="stylesheet" href="styles\news.css">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
@@ -14,28 +14,29 @@
     <!-- Stock Ticker -->
     <div class="ticker-wrapper">
         <div class="ticker">
-          <span>Sensex &nbsp; 7,280.05 <span class="up">▲ 0.15%</span> &nbsp;&nbsp;</span>
-          <span>BHARTIARTL &nbsp; 1,615.90 <span class="down">▼ 0.66%</span> &nbsp;&nbsp;</span>
-          <span>HDFCBANK&nbsp;  1,656.75 <span class="down">▼ 0.66%</span> &nbsp;&nbsp;</span>
-          <span>HINDUNILVR &nbsp; 2,442.05 <span class="up">▲ 0.27%</span> &nbsp;&nbsp;</span>
-          <span>INDIGO &nbsp; 4,226.80 <span class="down">▼ 0.75%</span> &nbsp;&nbsp;</span>
-          <span>ITC &nbsp; 444.90 <span class="down">▼ 1.16%</span> &nbsp;&nbsp;</span>
-          <span>MARUTI &nbsp; 11,631.10 <span class="down">▼ 0.93%</span> &nbsp;&nbsp;</span>
+          <span>Sensex &nbsp; 7,280.05 <span class="up">&#9650; 0.15%</span> &nbsp;&nbsp;</span>
+          <span>BHARTIARTL &nbsp; 1,615.90 <span class="down">&#9660; 0.66%</span> &nbsp;&nbsp;</span>
+          <span>HDFCBANK&nbsp;  1,656.75 <span class="down">&#9660; 0.66%</span> &nbsp;&nbsp;</span>
+          <span>HINDUNILVR &nbsp; 2,442.05 <span class="up">&#9650; 0.27%</span> &nbsp;&nbsp;</span>
+          <span>INDIGO &nbsp; 4,226.80 <span class="down">&#9660; 0.75%</span> &nbsp;&nbsp;</span>
+          <span>ITC &nbsp; 444.90 <span class="down">&#9660; 1.16%</span> &nbsp;&nbsp;</span>
+          <span>MARUTI &nbsp; 11,631.10 <span class="down">&#9660; 0.93%</span> &nbsp;&nbsp;</span>
         </div>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="res\img\logo.png" alt="Logo">
+            <img src="res/img/logo.png" alt="Logo">
             <h1>BullsEye</h1>
         </div>
         <div class="menu">
-            <a href="index.html">Home</a>
-            <a href="market.html">Market Dashboard</a>
-            <a href="discover.html">Discover</a>
-            <a href="news.html">News</a>
-            <a href="super.html">Super Investors</a>
+            <a href="index.html" class="transition-link">Home</a>
+            <a href="market.html" class="transition-link">Market Dashboard</a>
+            <a href="crypto.html" class="transition-link">Cypto Currency</a>
+            <a href="discover.html" class="transition-link">Discover</a>
+            <a href="news.html" class="transition-link">News</a>
+            <a href="super.html" class="transition-link">Super Investors</a>
         </div>
         <div class="extras">
             <span class="highlight"></span>
@@ -43,7 +44,47 @@
         </div>
     </nav>
 
-
+    <!-- News Section -->
+    <div id="news-section" class="news-container">
+        <h2>Latest Stock Market News</h2>
+        <div id="news-articles"></div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const apiKey = 'bd2807686c2f489596d0eff9f7286f65';
+        const newsContainer = document.getElementById('news-articles');
     
+        async function fetchNews() {
+            try {
+                const response = await fetch(`https://newsapi.org/v2/everything?q=stocks&apiKey=${apiKey}`);
+                const data = await response.json();
+    
+                data.articles.forEach(article => {
+                    const newsItem = document.createElement('div');
+                    newsItem.className = 'news-item';
+                    newsItem.innerHTML = `
+                        <img src="${article.urlToImage || 'default-image.jpg'}" alt="News Image" class="news-image">
+                        <div class="news-content">
+                            <h3>${article.title}</h3>
+                            <p>${article.description}</p>
+                            <a href="${article.url}" target="_blank">Read more</a>
+                        </div>
+                        <div class="news-footer">
+                            <span>Source: ${article.source.name}</span>
+                            <span>${new Date(article.publishedAt).toLocaleDateString()}</span>
+                        </div>
+                    `;
+                    newsContainer.appendChild(newsItem);
+                });
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
+    
+        fetchNews();
+    });
+    
+    
+</script>
 </body>
 </html>
