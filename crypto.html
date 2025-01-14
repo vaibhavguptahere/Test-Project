@@ -24,7 +24,6 @@
      .tradingview-widget-copyright {
         display: none !important;
       }
-
     </style>
 </head>
 <body>
@@ -41,25 +40,45 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="res\img\logo.png" alt="Logo">
-            <h1>BullsEye</h1>
-        </div>
-        <div class="menu">
-            <a href="index.html">Home</a>
-            <a href="market.html">Market Dashboard</a>
-            <a href="crypto.html">Cypto Currency</a>
-            <a href="discover.html">Discover</a>
-            <a href="news.html">News</a>
-            <a href="super.html">Super Investors</a>
-        </div>
-        <div class="extras">
-            <span class="highlight"></span>
-            <a href="#" class="account">Account</a>
-        </div>
-    </nav>
+   <!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="res/img/logo.png" alt="Logo">
+        <h1>BullsEye</h1>
+    </div>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="market.html">Market Dashboard</a>
+        <a href="crypto.html">Crypto Currency</a>
+        <a href="discover.html">Discover</a>
+        <a href="news.html">News</a>
+        <a href="super.html">Super Investors</a>
+    </div>
+    <div class="extras">
+        <span class="highlight"></span>
+        <a href="#" class="account">Account</a>
+    </div>
+    <!-- Hamburger Icon -->
+    <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</nav>
+
+<!-- Sidebar (hidden by default) -->
+<div id="sidebar" class="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">X</div>
+    <div class="sidebar-menu">
+        <a href="index.html">Home</a>
+        <a href="market.html">Market Dashboard</a>
+        <a href="crypto.html">Crypto Currency</a>
+        <a href="discover.html">Discover</a>
+        <a href="news.html">News</a>
+        <a href="super.html">Super Investors</a>
+        <a href="#">Accounts</a>
+    </div>
+</div>
 
      <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
@@ -71,6 +90,16 @@
 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js">
 
 </script>
+</script>
+
+
+<script>
+    // Function to toggle the sidebar on mobile
+function toggleMenu() {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+}
+
 </script>
 </body>
 </html>
