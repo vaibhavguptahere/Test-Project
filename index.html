@@ -36,7 +36,7 @@
         <span>ITC &nbsp; 444.90 <span class="down">▼ 1.16%</span> &nbsp;&nbsp;</span>
         <span>MARUTI &nbsp; 11,631.10 <span class="down">▼ 0.93%</span> &nbsp;&nbsp;</span>
       </div>
-  </div>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -77,9 +77,7 @@
         <a href="#">Accounts</a>
       </div>
     </div>
-
     <!-- Search Section -->
-    <!-- Search Bar Section -->
     <div class="container">
       <div class="title">Search the Bull, Ride the Market.</div>
       <div class="subtitle">
@@ -91,6 +89,7 @@
         </div>
         <input
           type="text"
+          id="stock-search"
           placeholder="Type a Company Name or Brand to search"
         />
       </div>
@@ -98,17 +97,20 @@
       <div class="trending">
         <h3>What's Trending:</h3>
         <div class="tags">
-          <span>ITC</span>
-          <span>Reliance</span>
-          <span>HDFC</span>
-          <span>Tata Steel</span>
-          <span>Infosys</span>
-          <span>Wipro</span>
-
-          <div class="bottom-image"></div>
+          <span class="stock-item" onclick="fetchStockData('REPL')">REPL</span>
+          <span class="stock-item" onclick="fetchStockData('TCS')">TCS</span>
+          <span class="stock-item" onclick="fetchStockData('AAT')">AAT</span>
+          <span class="stock-item" onclick="fetchStockData('ABUS')">ABUS</span>
+          <span class="stock-item" onclick="fetchStockData('DTC')">DTC</span>
+          <span class="stock-item" onclick="fetchStockData('PPL')">PPL</span>
+          <span class="stock-item" onclick="fetchStockData('LYRA')">LYRA</span>
         </div>
       </div>
     </div>
+
+    <!-- Stock details -->
+    <div class="stock-details" id="stock-details"></div>
+
 
     <script>
       // Function to toggle the sidebar on mobile
@@ -116,6 +118,54 @@
         var sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("active");
       }
+
+      async function fetchStockData(stockSymbol) {
+        const apiKey = 'cu36mbpr01qure9c09qgcu36mbpr01qure9c09r0'; // Replace with your API key
+        const apiUrl = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${apiKey}`;
+
+        const stockDetails = document.getElementById('stock-details');
+        stockDetails.innerHTML = '<p>Loading stock data...</p>'; // Temporary loading message
+
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+
+          if (!data.c) {
+            stockDetails.innerHTML = `<p>No data found for "${stockSymbol}". Please try a different symbol.</p>`;
+            return;
+          }
+
+          // Update the stock-details container
+          stockDetails.innerHTML = `
+            <div class="stock-info">
+              <h2>${stockSymbol.toUpperCase()} Stock Details</h2>
+              <p class="stock-price">$${data.c}</p>
+              <p><strong>High Today:</strong> $${data.h}</p>
+              <p><strong>Low Today:</strong> $${data.l}</p>
+              <p><strong>Opening Price:</strong> $${data.o}</p>
+              <p><strong>Previous Close:</strong> $${data.pc}</p>
+              <div class="stock-change ${data.c > data.pc ? 'up' : 'down'}">
+                <strong>Change:</strong> ${data.c > data.pc ? '▲' : '▼'} ${((data.c - data.pc) / data.pc * 100).toFixed(2)}%
+              </div>
+            </div>
+          `;
+        } catch (error) {
+          stockDetails.innerHTML = '<p>Error fetching stock data. Please try again later.</p>';
+          console.error('Error fetching stock data:', error);
+        }
+      }
+
+      // Handle search input
+      document.querySelector('#stock-search').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const stockSymbol = event.target.value.trim().toUpperCase();
+          if (stockSymbol) {
+            fetchStockData(stockSymbol);
+          } else {
+            document.getElementById('stock-details').innerHTML = '<p>Please enter a valid stock symbol.</p>';
+          }
+        }
+      });
     </script>
   </body>
 </html>
