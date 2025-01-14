@@ -64,23 +64,19 @@ body {
   }
 }
 
-/* Navbar styling */
+/* Navbar Styling */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
-  background-color: #ffffff; /* White background */
-  color: black; /* Black text */
+  background-color: #ffffff;
+  color: black;
   width: 100%;
   position: fixed;
   top: 30px; /* Below ticker */
   z-index: 999;
-}
-
-.navbar h1 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
@@ -106,25 +102,25 @@ body {
 }
 
 .navbar .menu a:hover {
-  color: #0d6efd; /* Blue text on hover */
+  color: #0d6efd;
 }
 
+/* Hide on small screens */
+.navbar .menu .hide {
+  display: none;
+}
+
+/* Extras Section */
 .navbar .extras {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar .extras .highlight {
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .navbar .extras .account {
   text-decoration: none;
   color: #0d6efd;
-  background-color: #e1efff; /* Black button with white text */
+  background-color: #E1EFFF;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 14px;
@@ -136,6 +132,97 @@ body {
   background-color: #f8f9fa;
   color: black;
   border: 1px solid black;
+}
+
+/* Hamburger Icon Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  margin-top: 80px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 998;
+  padding: 20px;
+}
+
+.sidebar-menu a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.sidebar-menu a:hover {
+  color: #0d6efd;
+}
+
+.close-btn {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .menu {
+      display: none; /* Hide the menu on small screens */
+  }
+
+  .hamburger {
+      display: flex; /* Show hamburger icon */
+  }
+
+  .sidebar {
+      left: -250px; /* Initially hidden */
+  }
+
+  .sidebar.active {
+      left: 0; /* Show sidebar when active */
+  }
+
+  /* Show hidden menu items inside sidebar on mobile */
+  .navbar .menu .hide {
+      display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .menu a {
+      font-size: 14px;
+  }
+
+  .navbar .extras .account {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .extras .account {
+      display: none; /* Hide the account feature on small screens */
+  }
 }
 
 /* Super Investors */
@@ -218,4 +305,118 @@ body {
         margin-left: 10px;
         line-height: 1.5;
     }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .head {
+    margin: 30px 20px;
+    h1 {
+      font-size: 26px;
+    }
+  }
+
+  .info {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+  }
+
+  .img img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .title {
+    margin-left: 0;
+    text-align: center;
+
+    p {
+      font-size: 28px;
+    }
+
+    .details {
+      width: auto;
+      margin-left: 0;
+    }
+
+    .cname {
+      font-size: 16px;
+    }
+
+    .about {
+      font-size: 14px;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .head {
+    margin: 30px 10px;
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .img img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .title {
+    margin-top: 15px;
+
+    p {
+      font-size: 24px;
+    }
+
+    .details {
+      padding: 4px;
+      font-size: 14px;
+    }
+
+    .cname {
+      font-size: 14px;
+    }
+
+    .about {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .head {
+    margin: 30px;
+    padding: 40px 0px 0px 0px;
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .img img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .title {
+    margin-top: 10px;
+
+    p {
+      font-size: 20px;
+    }
+
+    .details {
+      font-size: 12px;
+    }
+
+    .cname {
+      font-size: 12px;
+    }
+
+    .about {
+      font-size: 10px;
+    }
+  }
 }

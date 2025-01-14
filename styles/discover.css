@@ -64,23 +64,19 @@ body {
   }
 }
 
-/* Navbar styling */
+/* Navbar Styling */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
-  background-color: #ffffff; /* White background */
-  color: black; /* Black text */
+  background-color: #ffffff;
+  color: black;
   width: 100%;
   position: fixed;
   top: 30px; /* Below ticker */
   z-index: 999;
-}
-
-.navbar h1 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
@@ -106,25 +102,25 @@ body {
 }
 
 .navbar .menu a:hover {
-  color: #0d6efd; /* Blue text on hover */
+  color: #0d6efd;
 }
 
+/* Hide on small screens */
+.navbar .menu .hide {
+  display: none;
+}
+
+/* Extras Section */
 .navbar .extras {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar .extras .highlight {
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .navbar .extras .account {
   text-decoration: none;
   color: #0d6efd;
-  background-color: #e1efff; /* Black button with white text */
+  background-color: #E1EFFF;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 14px;
@@ -138,7 +134,98 @@ body {
   border: 1px solid black;
 }
 
+/* Hamburger Icon Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
 
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  margin-top: 80px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 998;
+  padding: 20px;
+}
+
+.sidebar-menu a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.sidebar-menu a:hover {
+  color: #0d6efd;
+}
+
+.close-btn {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .menu {
+      display: none; /* Hide the menu on small screens */
+  }
+
+  .hamburger {
+      display: flex; /* Show hamburger icon */
+  }
+
+  .sidebar {
+      left: -250px; /* Initially hidden */
+  }
+
+  .sidebar.active {
+      left: 0; /* Show sidebar when active */
+  }
+
+  /* Show hidden menu items inside sidebar on mobile */
+  .navbar .menu .hide {
+      display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .menu a {
+      font-size: 14px;
+  }
+
+  .navbar .extras .account {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .extras .account {
+      display: none; /* Hide the account feature on small screens */
+  }
+}
+
+/* General Styling */
 .head {
   padding: 70px 0px 0px 0px;
   margin: 50px 30px;
@@ -219,4 +306,88 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .head {
+    margin: 30px 20px;
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .card-container {
+    margin: 20px;
+    gap: 15px;
+  }
+
+  .card {
+    width: 45%; /* Adjust card size */
+  }
+}
+
+@media (max-width: 768px) {
+  .head {
+    margin: 40px 10px;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .card-container {
+    margin: 10px;
+  }
+
+  .card {
+    width: 100%; /* Full width for smaller screens */
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .head {
+    margin: 60px;
+    padding: 40px 0px 0px 0px;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .container {
+    padding: 20px 0;
+  }
+
+  .card-container {
+    flex-direction: column; /* Stack cards vertically */
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%; /* Full width */
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
 }

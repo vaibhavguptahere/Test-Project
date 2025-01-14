@@ -16,6 +16,7 @@ body {
   justify-content: space-between;
   opacity: 1;
   transition: opacity 0.5 ease;
+  overflow: hidden;
 }
 
 /* Page hiding effect */
@@ -27,7 +28,7 @@ body.hidden {
   background-image: url(../res/img/homebg.png); /* Replace with your image path */
   background-size: cover; /* Ensure the image covers its container */
   background-position: center top;
-  height: 370px; /* Adjust the height as needed */
+  height:500px; /* Adjust the height as needed */
 }
 
 .ticker-wrapper span {
@@ -83,23 +84,19 @@ body.hidden {
   }
 }
 
-/* Navbar styling */
+/* Navbar Styling */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
-  background-color: #ffffff; /* White background */
-  color: black; /* Black text */
+  background-color: #ffffff;
+  color: black;
   width: 100%;
   position: fixed;
   top: 30px; /* Below ticker */
   z-index: 999;
-}
-
-.navbar h1{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
@@ -125,25 +122,25 @@ body.hidden {
 }
 
 .navbar .menu a:hover {
-  color: #0d6efd; /* Blue text on hover */
+  color: #0d6efd;
 }
 
+/* Hide on small screens */
+.navbar .menu .hide {
+  display: none;
+}
+
+/* Extras Section */
 .navbar .extras {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar .extras .highlight {
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .navbar .extras .account {
   text-decoration: none;
   color: #0d6efd;
-  background-color: #E1EFFF; /* Black button with white text */
+  background-color: #E1EFFF;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 14px;
@@ -155,6 +152,97 @@ body.hidden {
   background-color: #f8f9fa;
   color: black;
   border: 1px solid black;
+}
+
+/* Hamburger Icon Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  margin-top: 80px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 998;
+  padding: 20px;
+}
+
+.sidebar-menu a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.sidebar-menu a:hover {
+  color: #0d6efd;
+}
+
+.close-btn {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .menu {
+      display: none; /* Hide the menu on small screens */
+  }
+
+  .hamburger {
+      display: flex; /* Show hamburger icon */
+  }
+
+  .sidebar {
+      left: -250px; /* Initially hidden */
+  }
+
+  .sidebar.active {
+      left: 0; /* Show sidebar when active */
+  }
+
+  /* Show hidden menu items inside sidebar on mobile */
+  .navbar .menu .hide {
+      display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .menu a {
+      font-size: 14px;
+  }
+
+  .navbar .extras .account {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .extras .account {
+      display: none; /* Hide the account feature on small screens */
+  }
 }
 
 /* Enhanced Search Bar */
@@ -236,6 +324,7 @@ body.hidden {
 .trending {
   margin-top: 30px;
   margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .trending span {
@@ -256,4 +345,70 @@ body.hidden {
   background: linear-gradient(120deg, #0166ff, #004179);
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .search-bar input {
+    padding: 18px 60px;
+    font-size: 16px;
+  }
+
+  .trending span {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .search-bar {
+    margin-left: 0;
+  }
+
+  .search-bar input {
+    padding: 16px 50px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .search-bar input {
+    padding: 14px 40px;
+    font-size: 12px;
+  }
+
+  .search-bar .icon {
+    right: 15px;
+    font-size: 18px;
+  }
+
+  .trending span {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+
 }

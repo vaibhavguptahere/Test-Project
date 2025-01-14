@@ -9,6 +9,14 @@ body {
   background-color: #eef5fb;
   overflow: hidden;
   overflow: auto;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 1;
+  transition: opacity 0.5 ease;
 }
 
 /* Hide the Scrollbar */
@@ -69,23 +77,19 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Navbar styling */
+/* Navbar Styling */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 20px;
-  background-color: #ffffff; /* White background */
-  color: black; /* Black text */
+  background-color: #ffffff;
+  color: black;
   width: 100%;
   position: fixed;
   top: 30px; /* Below ticker */
   z-index: 999;
-}
-
-.navbar h1 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
@@ -111,25 +115,25 @@ body::-webkit-scrollbar {
 }
 
 .navbar .menu a:hover {
-  color: #0d6efd; /* Blue text on hover */
+  color: #0d6efd;
 }
 
+/* Hide on small screens */
+.navbar .menu .hide {
+  display: none;
+}
+
+/* Extras Section */
 .navbar .extras {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar .extras .highlight {
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .navbar .extras .account {
   text-decoration: none;
   color: #0d6efd;
-  background-color: #e1efff; /* Black button with white text */
+  background-color: #E1EFFF;
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 14px;
@@ -143,8 +147,98 @@ body::-webkit-scrollbar {
   border: 1px solid black;
 }
 
+/* Hamburger Icon Styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  border-radius: 5px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  margin-top: 80px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 998;
+  padding: 20px;
+}
+
+.sidebar-menu a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.sidebar-menu a:hover {
+  color: #0d6efd;
+}
+
+.close-btn {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .menu {
+      display: none; /* Hide the menu on small screens */
+  }
+
+  .hamburger {
+      display: flex; /* Show hamburger icon */
+  }
+
+  .sidebar {
+      left: -250px; /* Initially hidden */
+  }
+
+  .sidebar.active {
+      left: 0; /* Show sidebar when active */
+  }
+
+  /* Show hidden menu items inside sidebar on mobile */
+  .navbar .menu .hide {
+      display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .menu a {
+      font-size: 14px;
+  }
+
+  .navbar .extras .account {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .extras .account {
+      display: none; /* Hide the account feature on small screens */
+  }
+}
 .news-container {
-  padding: 30px;
+  padding: 25px;
   background-color: #fff;
   max-width: 1000px;
   margin: 90px auto;
@@ -159,6 +253,7 @@ body::-webkit-scrollbar {
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
+  margin-top: 20px;
 }
 
 .news-item .news-image {
@@ -206,6 +301,7 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .news-container {
+    margin: 90px;
     padding: 10px;
   }
   .news-item h3 {
@@ -218,6 +314,7 @@ body::-webkit-scrollbar {
 .news-item:hover {
   transform: scale(1.1); /* Scale the item to 1.2 times its original size */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+  transition: 0.4s ease-in-out;
 }
 body {
   font-family: "Roboto", sans-serif;
