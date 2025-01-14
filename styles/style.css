@@ -50,7 +50,7 @@ body.hidden {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #E1EFFF; /* White background */
+  background-color: #E1EFFF; /* Light blue background */
   color: black; /* Black text */
   overflow: hidden;
   height: 30px;
@@ -63,8 +63,8 @@ body.hidden {
 .ticker {
   display: inline-block;
   white-space: nowrap;
-  padding-left: 50%;
-  animation: ticker 27s linear infinite;
+  padding-left: 100%; /* Start from the far right */
+  animation: ticker 27s linear infinite; /* Animate the ticker */
 }
 
 .ticker span {
@@ -74,14 +74,16 @@ body.hidden {
   font-weight: bold;
 }
 
+/* Ticker animation */
 @keyframes ticker {
-  from {
-      transform: translateX(0);
+  0% {
+    transform: translateX(0); /* Start at the right edge */
   }
-  to {
-      transform: translateX(-100%);
+  100% {
+    transform: translateX(-100%); /* Move completely to the left */
   }
 }
+
 
 /* Navbar Styling */
 .navbar {

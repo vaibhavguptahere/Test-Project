@@ -24,9 +24,21 @@ body::-webkit-scrollbar {
   display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
 }
 
-/* General reset */
+
+/* Page hiding effect */
+body.hidden {
+  opacity: 0;
+}
+
+.bottom-image {
+  background-image: url(../res/img/homebg.png); /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers its container */
+  background-position: center top;
+  height:500px; /* Adjust the height as needed */
+}
+
 .ticker-wrapper span {
-  color: #4a90e2; /* Blue text for labels */
+  color: #4A90E2; /* Blue text for labels */
   font-family: Arial, sans-serif;
   .up {
     margin-left: 4px;
@@ -36,6 +48,7 @@ body::-webkit-scrollbar {
     margin-left: 4px;
     color: red; /* Red for downward movement */
   }
+  
 }
 
 /* Stock Ticker */
@@ -44,7 +57,7 @@ body::-webkit-scrollbar {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #e1efff; /* White background */
+  background-color: #E1EFFF; /* White background */
   color: black; /* Black text */
   overflow: hidden;
   height: 30px;
@@ -70,10 +83,10 @@ body::-webkit-scrollbar {
 
 @keyframes ticker {
   from {
-    transform: translateX(0);
+      transform: translateX(0);
   }
   to {
-    transform: translateX(-100%);
+      transform: translateX(-100%);
   }
 }
 
