@@ -27,15 +27,7 @@
   <body>
     <!-- Stock Ticker -->
     <div class="ticker-wrapper">
-      <div class="ticker">
-        <span>Sensex &nbsp; 7,280.05 <span class="up">▲ 0.15%</span> &nbsp;&nbsp;</span>
-        <span>BHARTIARTL &nbsp; 1,615.90 <span class="down">▼ 0.66%</span> &nbsp;&nbsp;</span>
-        <span>HDFCBANK&nbsp;  1,656.75 <span class="down">▼ 0.66%</span> &nbsp;&nbsp;</span>
-        <span>HINDUNILVR &nbsp; 2,442.05 <span class="up">▲ 0.27%</span> &nbsp;&nbsp;</span>
-        <span>INDIGO &nbsp; 4,226.80 <span class="down">▼ 0.75%</span> &nbsp;&nbsp;</span>
-        <span>ITC &nbsp; 444.90 <span class="down">▼ 1.16%</span> &nbsp;&nbsp;</span>
-        <span>MARUTI &nbsp; 11,631.10 <span class="down">▼ 0.93%</span> &nbsp;&nbsp;</span>
-      </div>
+      <div class="ticker"></div>
     </div>
 
     <!-- Navbar -->
@@ -112,6 +104,7 @@
     <div class="stock-details" id="stock-details"></div>
 
 
+    <!-- Scripts -->
     <script>
       // Function to toggle the sidebar on mobile
       function toggleMenu() {
@@ -120,11 +113,11 @@
       }
 
       async function fetchStockData(stockSymbol) {
-        const apiKey = 'cu36mbpr01qure9c09qgcu36mbpr01qure9c09r0'; // Replace with your API key
+        const apiKey = "cu36mbpr01qure9c09qgcu36mbpr01qure9c09r0"; // Replace with your API key
         const apiUrl = `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${apiKey}`;
 
-        const stockDetails = document.getElementById('stock-details');
-        stockDetails.innerHTML = '<p>Loading stock data...</p>'; // Temporary loading message
+        const stockDetails = document.getElementById("stock-details");
+        stockDetails.innerHTML = "<p>Loading stock data...</p>"; // Temporary loading message
 
         try {
           const response = await fetch(apiUrl);
@@ -144,28 +137,36 @@
               <p><strong>Low Today:</strong> $${data.l}</p>
               <p><strong>Opening Price:</strong> $${data.o}</p>
               <p><strong>Previous Close:</strong> $${data.pc}</p>
-              <div class="stock-change ${data.c > data.pc ? 'up' : 'down'}">
-                <strong>Change:</strong> ${data.c > data.pc ? '▲' : '▼'} ${((data.c - data.pc) / data.pc * 100).toFixed(2)}%
+              <div class="stock-change ${data.c > data.pc ? "up" : "down"}">
+                <strong>Change:</strong> ${data.c > data.pc ? "▲" : "▼"} ${(
+            ((data.c - data.pc) / data.pc) *
+            100
+          ).toFixed(2)}%
               </div>
             </div>
           `;
         } catch (error) {
-          stockDetails.innerHTML = '<p>Error fetching stock data. Please try again later.</p>';
-          console.error('Error fetching stock data:', error);
+          stockDetails.innerHTML =
+            "<p>Error fetching stock data. Please try again later.</p>";
+          console.error("Error fetching stock data:", error);
         }
       }
 
       // Handle search input
-      document.querySelector('#stock-search').addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          const stockSymbol = event.target.value.trim().toUpperCase();
-          if (stockSymbol) {
-            fetchStockData(stockSymbol);
-          } else {
-            document.getElementById('stock-details').innerHTML = '<p>Please enter a valid stock symbol.</p>';
+      document
+        .querySelector("#stock-search")
+        .addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            const stockSymbol = event.target.value.trim().toUpperCase();
+            if (stockSymbol) {
+              fetchStockData(stockSymbol);
+            } else {
+              document.getElementById("stock-details").innerHTML =
+                "<p>Please enter a valid stock symbol.</p>";
+            }
           }
-        }
-      });
+        });
     </script>
+    <script src="ticker.js" defer></script>
   </body>
 </html>
